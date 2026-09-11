@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>04/06/26 — Leo</title>
+
+    <!-- FUENTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+
+
+        :root {
+
+            --pink: #d94f70;
+            --pink-light: #f0bdce;
+            --pink-dark: #a83252;
+
+            --bg-1: #fff0f4;
+            --bg-2: #e9e7ff;
+
+            --text: #343034;
+            --text-soft: #706870;
+
+            --card: rgba(255, 255, 255, 0.68);
+            --card-border: rgba(255, 255, 255, 0.8);
+
+            --shadow:
+                0 20px 60px rgba(82, 35, 52, 0.12);
+
+            --radius: 28px;
+        }
+
+
+
+        body.dark {
+
+            --bg-1: #110d12;
+            --bg-2: #21151c;
+
+            --text: #f7edf1;
+            --text-soft: #c4b7bd;
+
+            --card: rgba(38, 27, 33, 0.72);
+            --card-border: rgba(255, 255, 255, 0.08);
+
+            --shadow:
+                0 20px 70px rgba(0, 0, 0, 0.35);
+        }
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family: "DM Sans", sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(255, 190, 210, .55),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(190, 185, 255, .4),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    var(--bg-1),
+                    var(--bg-2)
+                );
+
+            overflow-x: hidden;
+
+            transition:
+                background .6s ease,
+                color .4s ease;
+        }
+
+
+
+        .background-glow {
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background: rgba(217, 79, 112, .08);
+
+            filter: blur(100px);
+
+            pointer-events: none;
+
+            z-index: -2;
+        }
+
+        .glow-1 {
+            top: -200px;
+            left: -200px;
+        }
+
+        .glow-2 {
+            right: -200px;
+            bottom: -200px;
+
+            background: rgba(120, 110, 255, .09);
+        }
+
+
+
+        .hearts {
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 0;
+        }
+
+        .heart {
+
+            position: absolute;
+
+            bottom: -30px;
+
+            font-size: 15px;
+
+            opacity: 0;
+
+            animation: floatHeart linear forwards;
+
+            filter: blur(.1px);
+        }
+
+        @keyframes floatHeart {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg)
+                    scale(.8);
+
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .55;
+            }
+
+            100% {
+
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg)
+                    scale(1.4);
+
+                opacity: 0;
+            }
+        }
+
+
+
+        .theme-button {
+
+            position: fixed;
+
+            top: 22px;
+            right: 22px;
+
+            width: 48px;
+            height: 48px;
+
+            border: 1px solid var(--card-border);
+
+            border-radius: 50%;
+
+            background: var(--card);
+
+            backdrop-filter: blur(20px);
+
+            color: var(--text);
+
+            font-size: 19px;
+
+            cursor: pointer;
+
+            z-index: 100;
+
+            box-shadow: var(--shadow);
+
+            transition:
+                transform .3s ease,
+                background .3s ease;
+        }
+
+        .theme-button:hover {
+
+            transform:
+                rotate(15deg)
+                scale(1.1);
+        }
+
+
+
+        .container {
+
+            width: min(900px, calc(100% - 30px));
+
+            margin: auto;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+
+        header {
+
+            min-height: 90vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 100px 20px 60px;
+        }
+
+
+        .date {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            border-radius: 50px;
+
+            background: var(--card);
+
+            border: 1px solid var(--card-border);
+
+            backdrop-filter: blur(20px);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            letter-spacing: 1px;
+
+            color: var(--pink);
+
+            margin-bottom: 25px;
+
+            animation: appear .9s ease both;
+        }
+
+
+        header h1 {
+
+            font-family: "Great Vibes", cursive;
+
+            font-size: clamp(4.5rem, 13vw, 8rem);
+
+            font-weight: 400;
+
+            line-height: .9;
+
+            color: var(--pink);
+
+            text-shadow:
+                0 10px 40px rgba(217, 79, 112, .18);
+
+            animation:
+                heroTitle 1.2s cubic-bezier(.2,.8,.2,1) both;
+        }
+
+
+        header .subtitle {
+
+            margin-top: 25px;
+
+            font-size: 1.15rem;
+
+            color: var(--text-soft);
+
+            max-width: 520px;
+
+            animation:
+                appear 1.4s .3s ease both;
+        }
+
+
+        .scroll {
+
+            margin-top: 80px;
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: var(--text-soft);
+
+            animation:
+                bounce 2s infinite;
+        }
+
+
+        @keyframes heroTitle {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(35px)
+                    scale(.9);
+
+                filter: blur(8px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+                filter: blur(0);
+            }
+        }
+
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        @keyframes bounce {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+
+
+        main {
+
+            padding-bottom: 100px;
+        }
+
+
+        .section {
+
+            margin-bottom: 25px;
+
+            padding: 35px;
+
+            border-radius: var(--radius);
+
+            background: var(--card);
+
+            border: 1px solid var(--card-border);
+
+            backdrop-filter: blur(25px);
+
+            -webkit-backdrop-filter: blur(25px);
+
+            box-shadow: var(--shadow);
+
+            opacity: 0;
+
+            transform: translateY(35px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease,
+                background .4s ease;
+        }
+
+
+        .section.visible {
+
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        .section:hover {
+
+            transform: translateY(-3px);
+        }
+
+
+        .section-number {
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: var(--pink);
+
+            margin-bottom: 8px;
+        }
+
+
+        .section h2 {
+
+            font-family: "Great Vibes", cursive;
+
+            font-size: 2.8rem;
+
+            font-weight: 400;
+
+            color: var(--pink-dark);
+
+            margin-bottom: 18px;
+        }
+
+
+        body.dark .section h2 {
+            color: var(--pink-light);
+        }
+
+
+        .section p {
+
+            color: var(--text-soft);
+
+            font-size: 16px;
+
+            line-height: 1.9;
+        }
+
+
+        .list {
+
+            list-style: none;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+
+        .list li {
+
+            position: relative;
+
+            padding: 17px 20px 17px 48px;
+
+            border-radius: 17px;
+
+            background: rgba(217, 79, 112, .055);
+
+            color: var(--text-soft);
+
+            line-height: 1.6;
+        }
+
+
+        .list li::before {
+
+            content: "♡";
+
+            position: absolute;
+
+            left: 18px;
+
+            top: 13px;
+
+            font-size: 22px;
+
+            color: var(--pink);
+        }
+
+
+        .gallery {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 14px;
+        }
+
+
+        .photo {
+
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background: #ddd;
+
+            aspect-ratio: 1 / 1;
+
+            cursor: pointer;
+        }
+
+
+        .photo:first-child {
+
+            grid-column: span 2;
+
+            aspect-ratio: 16 / 9;
+        }
+
+
+        .photo img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform .7s cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        .photo::after {
+
+            content: "♡";
+
+            position: absolute;
+
+            inset: 0;
+
+            display: grid;
+
+            place-items: center;
+
+            color: white;
+
+            font-size: 45px;
+
+            background:
+                rgba(0,0,0,.25);
+
+            opacity: 0;
+
+            transition: opacity .3s ease;
+        }
+
+
+        .photo:hover img {
+
+            transform: scale(1.08);
+        }
+
+
+        .photo:hover::after {
+
+            opacity: 1;
+        }
+
+
+        .songs {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+
+        .song {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 15px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(217,79,112,.055);
+
+            transition:
+                transform .3s ease,
+                background .3s ease;
+        }
+
+
+        .song:hover {
+
+            transform: translateX(5px);
+
+            background:
+                rgba(217,79,112,.10);
+        }
+
+
+        .song-number {
+
+            width: 38px;
+            height: 38px;
+
+            flex-shrink: 0;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 12px;
+
+            background: var(--pink);
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .song-info {
+
+            flex: 1;
+        }
+
+
+        .song-title {
+
+            font-weight: 700;
+
+            color: var(--text);
+        }
+
+
+        .song-artist {
+
+            font-size: 13px;
+
+            color: var(--text-soft);
+        }
+
+
+        .play {
+
+            width: 40px;
+            height: 40px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: var(--pink);
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+
+        .play:hover {
+
+            transform: scale(1.1);
+
+            box-shadow:
+                0 8px 20px rgba(217,79,112,.3);
+        }
+
+
+        .promise {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            padding: 17px 0;
+
+            border-bottom:
+                1px solid rgba(217,79,112,.12);
+
+            color: var(--text-soft);
+        }
+
+
+        .promise:last-child {
+            border-bottom: none;
+        }
+
+
+        .promise-number {
+
+            color: var(--pink);
+
+            font-weight: 700;
+
+            min-width: 25px;
+        }
+
+
+        .counter {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+
+        .counter-box {
+
+            text-align: center;
+
+            padding: 18px 8px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(217,79,112,.07);
+        }
+
+
+        .counter-number {
+
+            display: block;
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            color: var(--pink);
+        }
+
+
+        .counter-label {
+
+            display: block;
+
+            margin-top: 3px;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            color: var(--text-soft);
+        }
+
+
+        .final {
+
+            text-align: center;
+
+            padding:
+                100px 20px 130px;
+        }
+
+
+        .final-heart {
+
+            font-size: 70px;
+
+            display: block;
+
+            margin-bottom: 15px;
+
+            animation:
+                heartbeat 1.8s infinite;
+        }
+
+
+        .final h2 {
+
+            font-family:
+                "Great Vibes",
+                cursive;
+
+            font-size:
+                clamp(4rem, 10vw, 6rem);
+
+            font-weight: 400;
+
+            color: var(--pink);
+
+            line-height: 1;
+        }
+
+
+        .final p {
+
+            color: var(--text-soft);
+
+            margin-top: 20px;
+        }
+
+
+        .love-button {
+
+            margin-top: 30px;
+
+            border: none;
+
+            padding: 15px 30px;
+
+            border-radius: 50px;
+
+            background: var(--pink);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 30px rgba(217,79,112,.25);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+
+        .love-button:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.03);
+
+            box-shadow:
+                0 18px 40px rgba(217,79,112,.35);
+        }
+
+
+
+        footer {
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: var(--text-soft);
+
+            font-size: 12px;
+
+            opacity: .7;
+        }
+
+
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: min(100% - 20px, 900px);
+            }
+
+            .section {
+                padding: 25px 20px;
+                border-radius: 23px;
+            }
+
+            .section h2 {
+                font-size: 2.4rem;
+            }
+
+            .gallery {
+                gap: 9px;
+            }
+
+            .counter {
+                gap: 6px;
+            }
+
+            .counter-box {
+                padding: 14px 5px;
+            }
+
+            .counter-number {
+                font-size: 20px;
+            }
+
+            .song {
+                padding: 12px;
+            }
+
+            header {
+                min-height: 80vh;
+            }
+        }
+
+            
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- FONDO -->
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+
+    <div class="hearts" id="hearts"></div>
+
+
+    <!-- BOTÓN DE TEMA -->
+    <button
+        class="theme-button"
+        id="themeButton"
+        aria-label="Cambiar tema">
+        ☾
+    </button>
+
+
+
+
+    <script>
+
+        const DATA = {
+
+            /* TÍTULO */
+
+            date: "04 · 06 · 26",
+
+            name: "De Leo Para Su Amada",
+
+            subtitle:
+                "Mi amor de otra forma...",
+
+
+            /* CONTADOR */
+
+            startDate:
+                "2026-06-04T17:55:00",
+
+
+            /* INTRODUCCIÓN */
+
+            intro: {
+
+                title: "¿Qué es esto?",
+
+                text:
+                    `En una palabra podria ser: Expresion, en varias seria algo que quiero compartir
+                    con el amor de mi vida, una nueva puerta hacia mi corazon.`
+
+            },
+
+
+            /* CAPÍTULOS */
+
+            chapters: [
+  
+                {
+
+                    title: "Lo que me haces sentir",
+
+                    text:
+                        `En un estado normal te podria decir "Amor" pero si me agarras pensando en todo lo que hemos vivido diria que:
+                        Lo que siento es algo inexplicable, sos capaz de alegrarme y arruinarme un dia, para que no suene mal, al decir "arruinarme"
+                         es algo mas como que, una cosa como que vos estes mal, estemos peleados, o algo parecido pues, se me arruina el dia, siento una necesidad
+                      podria llegar a decir que roza la obsesion pero de la buena, me siento amado y seguro de que estoy con la indicada, amo lo que hemos tenido y lo que vamos a tener,
+                      voy a darlo todo para que tengamos un futuro muy bonito, mi vida, pienso en vos en todo el rato y siento que mi vida es mas tuya que mia JAJAJA, amo eso, te amo a vos.
+                        Es increible poder ser con quien pasas tiempo todos los dias, es increible jugar con vos, es increible verte, es increible todo, mi amor por vos es algo inexplicable 
+                        y es algo digno de ser estudiado ya que siento que esto no es normal, me siento invencible cuando estoy con vos, siento que todo es nada cuando estoy con vos, me das superpoderes.
+                         amo escribir acerca de lo que siento ya que es como sacar mas todo lo que tengo, siempre fuiste vos para mi, siempre fueron tus ojitos hermosos, tu piel suave, tus labios y todo lo que me transmite estar con vos. 
+                               estoy dispuesto a vivir miles y miles de dias junto a vos, ahorita solo estamos en los 2 digitos, entrando a 3, pero espero que sean 4, si no me equivoco tambien se puede con 5, quiero todo lo que se pueda con vos.
+           te amo como no te lo imaginas, mi muñequita linda, haria lo que fuera por vos, todos los dias espero al dia en que nos podamos casar, que podamos vivir bien y que podamos ser muy felices, mi amor. podria seguir en este capitulo pero tambien quiero que 
+           se puedan poner mas capitulos JAJAJAJA, sin mas pues, te amo mucho, mi amor 🫶🏻🫶🏻🫶🏻.`
+
+                },
+
+                {
+
+                    title: "Tercer Mes",
+                    
+
+                    text:
+                        `Esto es por lo que no pude decir en nuestro tercer mes:
+                        Pues, felices tres meses, mi amor, te amo como siempre, como no te lo imaginas,
+                        me haces el hombre mas feliz del universo y espero que esto nunca se termine. 
+                        En estos 3 meses he compartido cosas increibles con vos, mi amor, y daria todo por lo mismo de vivir mas con vos.
+                         Sos el amor de mi vida definitivamente, siento que sin vos mi vida seria muy triste, 
+                         amo todo lo que tengo con vos, los besitos, los abrazos y esos momentos graciosos, en parte tambien lo malo pero no tanto JAJAJ.
+                         Amo cuando venis a mi casa, odio cuando te vas, amo cuando nos reimos, odio cuando peleamos, amo tu tacto, odio tu desinteres, 
+                         estoy loco por vos y amo esta locura, es horrible pero bonito senitr esa desperacion por verte, horrible porque no puedo solucionarlo y
+                          bonito porque es con vos, amo que hayamos vivido tanto juntos mi amor, son ya 3 años de conocernos, es increible que todo haya sido con vos, podria pasar dias enteros hablando de esto 
+                          pero se haria demasiado largo y pues como cierre puedo poner un lindo y sincero... Te amo, mi chiquita preciosa.`
+
+                },
+                
+            ],
+            
+
+
+            /* PROMESAS */
+
+            promises: [
+
+                "Prometo nunca dejarte solita.",
+
+                "Prometo siempre hacerte sentir amada",
+
+                "Prometo intentar hacerte feliz siempre",
+
+                "Prometo mejorar como pareja y hombre para vos",
+
+                "Prometo nunca aburrirme de vos.",
+
+            ],
+
+
+            /* IMÁGENES */
+
+            images: [
+
+                "https://i.imgur.com/UjrCliz.jpeg",
+
+                "https://i.imgur.com/vbKWTpR.jpeg",
+
+                "https://i.imgur.com/CiAqAAZ.jpeg"
+
+            ],
+
+
+            /* CANCIONES */
+
+            songs: [
+
+                {
+                    title: "eCLIPSE sOLAR",
+                    artist: "Duki",
+                    url: "https://open.spotify.com/intl-es/track/29QWLM6tRe7Yp4dvNt02JC?si=5cee3268f2164a25"
+                },
+
+                {
+                    title: "Lover Is A Day",
+                    artist: "Cuco",
+                    url: "https://open.spotify.com/intl-es/track/1ucnuV88gFTfR3BalmznDk?si=01ddc3bc0cce4c82"
+                },
+
+                {
+                    title: "M.A.I",
+                    artist: "Milo J",
+                    url: "https://open.spotify.com/intl-es/track/35ttE4t8lQZA2vuCYDg4G7?si=28e099179ac7491c"
+                },
+
+                {
+                    title: "A VOS",
+                    artist: "Milo J",
+                    url: "https://open.spotify.com/intl-es/track/2Yr4uOmBLMepYXQbhOVNTO?si=a4c43cfa297c453f"
+                },
+
+                {
+                    title: "Buscarte Lejos",
+                    artist: "Duki",
+                    url: "https://open.spotify.com/intl-es/track/7b9hpzFQJaKUAAKsOeDafS?si=c6131b7ae63942b7"
+                }
+
+            ],
+
+
+            /* CRÉDITOS */
+
+            credits: [
+
+                "Diseño visual — Leo",
+
+                "Selección de colores — Leo",
+
+                "Selección sonora — Leo",
+
+                "Diseño gráfico — Leo",
+
+                "El resto de cosas — Leo"
+
+            ]
+
+        };
+
+
+    </script>
+
+
+
+    <header>
+
+        <div class="date">
+            ♡ &nbsp; <span id="date"></span>
+        </div>
+
+        <h1 id="name"></h1>
+
+        <p
+            class="subtitle"
+            id="subtitle">
+        </p>
+
+        <div class="scroll">
+            ↓ &nbsp; BAJA &nbsp; ↓
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- INTRO -->
+
+        <section class="section">
+
+            <div class="section-number">
+                01 · comienzo
+            </div>
+
+            <h2 id="introTitle"></h2>
+
+            <p id="introText"></p>
+
+        </section>
+
+
+        <!-- CAPÍTULOS -->
+
+        <div id="chapters"></div>
+
+
+        <!-- CONTADOR -->
+
+        <section class="section">
+
+            <div class="section-number">
+                tiempo
+            </div>
+
+            <h2>Desde aquel día</h2>
+
+            <p>
+                Esto es un contador desde el momento en que me dijiste "si",
+                 y mas te vale que llegue a mas de lo que esta aca abajo
+            </p>
+
+            <div class="counter">
+
+                <div class="counter-box">
+                    <span
+                        class="counter-number"
+                        id="days">
+                        0
+                    </span>
+
+                    <span class="counter-label">
+                        días
+                    </span>
+                </div>
+
+
+                <div class="counter-box">
+                    <span
+                        class="counter-number"
+                        id="hours">
+                        0
+                    </span>
+
+                    <span class="counter-label">
+                        horas
+                    </span>
+                </div>
+
+
+                <div class="counter-box">
+                    <span
+                        class="counter-number"
+                        id="minutes">
+                        0
+                    </span>
+
+                    <span class="counter-label">
+                        minutos
+                    </span>
+                </div>
+
+
+                <div class="counter-box">
+                    <span
+                        class="counter-number"
+                        id="seconds">
+                        0
+                    </span>
+
+                    <span class="counter-label">
+                        segundos
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROMESAS -->
+
+        <section class="section">
+
+            <div class="section-number">
+                promesas
+            </div>
+
+            <h2>Mis promesas</h2>
+
+            <div
+                class="list"
+                id="promises">
+            </div>
+
+        </section>
+
+
+        <!-- GALERÍA -->
+
+        <section class="section">
+
+            <div class="section-number">
+                recuerdos
+            </div>
+
+            <h2>Mira mi amor nosotros</h2>
+
+            <div
+                class="gallery"
+                id="gallery">
+            </div>
+
+        </section>
+
+
+        <!-- CANCIONES -->
+
+        <section class="section">
+
+            <div class="section-number">
+                soundtrack
+            </div>
+
+            <h2>Canciones que quiero dedicarte</h2>
+
+            <div
+                class="songs"
+                id="songs">
+            </div>
+
+        </section>
+
+
+        <!-- CRÉDITOS -->
+
+        <section class="section">
+
+            <div class="section-number">
+                créditos
+            </div>
+
+            <h2>Hecho por mí</h2>
+
+            <div id="credits"></div>
+
+        </section>
+
+
+        <!-- FINAL -->
+
+        <section class="final">
+
+            <span class="final-heart">
+                ♡
+            </span>
+
+            <h2>Te amo</h2>
+
+            <p>
+                Me falto muchisimo mas pero va a ser en otra version
+            </p>
+
+            <button
+                class="love-button"
+                id="loveButton">
+
+                Presiona aquí ♡
+
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        04/06/26 · v1.0.0 · Para Yuri
+
+    </footer>
+
+
+
+
+    <script>
+
+
+
+        document.getElementById("date").textContent =
+            DATA.date;
+
+        document.getElementById("name").textContent =
+            DATA.name;
+
+        document.getElementById("subtitle").textContent =
+            DATA.subtitle;
+
+        document.getElementById("introTitle").textContent =
+            DATA.intro.title;
+
+        document.getElementById("introText").textContent =
+            DATA.intro.text;
+
+
+
+
+        const chapters =
+            document.getElementById("chapters");
+
+
+        DATA.chapters.forEach((chapter, index) => {
+
+            const section =
+                document.createElement("section");
+
+            section.className = "section";
+
+
+            const number =
+                String(index + 2).padStart(2, "0");
+
+
+            let content = `
+
+                <div class="section-number">
+                    ${number} · capítulo
+                </div>
+
+                <h2>
+                    ${chapter.title}
+                </h2>
+
+            `;
+
+
+            if (chapter.text) {
+
+                content += `
+                    <p>
+                        ${chapter.text}
+                    </p>
+                `;
+
+            }
+            
+
+
+
+            if (chapter.items) {
+
+                content += `
+                    <ul class="list">
+                        ${chapter.items
+                            .map(item =>
+                                `<li>${item}</li>`
+                            )
+                            .join("")}
+                    </ul>
+                `;
+
+            }
+
+
+            section.innerHTML =
+                content;
+
+
+            chapters.appendChild(section);
+
+        });
+
+
+
+
+        const promises =
+            document.getElementById("promises");
+
+
+        DATA.promises.forEach((promise, index) => {
+
+            promises.innerHTML += `
+
+                <div class="promise">
+
+                    <span class="promise-number">
+                        ${String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span>
+                        ${promise}
+                    </span>
+
+                </div>
+
+            `;
+
+        });
+
+
+
+
+        const gallery =
+            document.getElementById("gallery");
+
+
+        DATA.images.forEach((image, index) => {
+
+            gallery.innerHTML += `
+
+                <div class="photo">
+
+                    <img
+                        src="${image}"
+                        alt="Imagen ${index + 1}"
+                        loading="lazy">
+
+                </div>
+
+            `;
+
+        });
+
+
+
+
+        const songs =
+            document.getElementById("songs");
+
+
+        DATA.songs.forEach((song, index) => {
+
+            songs.innerHTML += `
+
+                <div class="song">
+
+                    <div class="song-number">
+                        ${index + 1}
+                    </div>
+
+                    <div class="song-info">
+
+                        <div class="song-title">
+                            ${song.title}
+                        </div>
+
+                        <div class="song-artist">
+                            ${song.artist}
+                        </div>
+
+                    </div>
+
+                    <a
+                        class="play"
+                        href="${song.url}"
+                        target="_blank"
+                        rel="noopener">
+
+                        ▶
+
+                    </a>
+
+                </div>
+
+            `;
+
+        });
+
+
+
+        const credits =
+            document.getElementById("credits");
+
+
+        DATA.credits.forEach(credit => {
+
+            credits.innerHTML += `
+
+                <div class="promise">
+
+                    <span class="promise-number">
+                        ✦
+                    </span>
+
+                    <span>
+                        ${credit}
+                    </span>
+
+                </div>
+
+            `;
+
+        });
+
+
+
+
+        const themeButton =
+            document.getElementById("themeButton");
+
+
+        const savedTheme =
+            localStorage.getItem("theme");
+
+
+        if (savedTheme === "dark") {
+
+            document.body.classList.add("dark");
+
+            themeButton.textContent = "☀";
+
+        }
+
+
+        themeButton.addEventListener("click", () => {
+
+            document.body.classList.toggle("dark");
+
+
+            const dark =
+                document.body.classList.contains("dark");
+
+
+            themeButton.textContent =
+                dark ? "☀" : "☾";
+
+
+            localStorage.setItem(
+                "theme",
+                dark ? "dark" : "light"
+            );
+
+        });
+
+
+
+
+        function updateCounter() {
+
+            const start =
+                new Date(DATA.startDate);
+
+            const now =
+                new Date();
+
+            const difference =
+                Math.max(
+                    0,
+                    now - start
+                );
+
+
+            const totalSeconds =
+                Math.floor(
+                    difference / 1000
+                );
+
+
+            const days =
+                Math.floor(
+                    totalSeconds / 86400
+                );
+
+
+            const hours =
+                Math.floor(
+                    totalSeconds % 86400 / 3600
+                );
+
+
+            const minutes =
+                Math.floor(
+                    totalSeconds % 3600 / 60
+                );
+
+
+            const seconds =
+                totalSeconds % 60;
+
+
+            document.getElementById("days")
+                .textContent = days;
+
+            document.getElementById("hours")
+                .textContent = hours;
+
+            document.getElementById("minutes")
+                .textContent = minutes;
+
+            document.getElementById("seconds")
+                .textContent = seconds;
+
+        }
+
+
+        updateCounter();
+
+        setInterval(
+            updateCounter,
+            1000
+        );
+
+
+
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: .12
+                }
+
+            );
+
+
+        document
+            .querySelectorAll(".section")
+            .forEach(section => {
+
+                observer.observe(section);
+
+            });
+
+
+
+
+        const hearts =
+            document.getElementById("hearts");
+
+
+        function createHeart() {
+
+            const heart =
+                document.createElement("span");
+
+
+            heart.className =
+                "heart";
+
+
+            heart.textContent =
+                Math.random() > .5
+                    ? "♡"
+                    : "♥";
+
+
+            heart.style.left =
+                Math.random() * 100 + "%";
+
+
+            heart.style.fontSize =
+                10 + Math.random() * 18 + "px";
+
+
+            heart.style.animationDuration =
+                7 + Math.random() * 8 + "s";
+
+
+            hearts.appendChild(heart);
+
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 16000);
+
+        }
+
+
+        setInterval(
+            createHeart,
+            1200
+        );
+
+
+
+        const loveButton =
+            document.getElementById("loveButton");
+
+
+        loveButton.addEventListener("click", () => {
+
+            for (
+                let i = 0;
+                i < 25;
+                i++
+            ) {
+
+                setTimeout(
+                    createHeart,
+                    i * 45
+                );
+
+            }
+
+
+            loveButton.textContent =
+                "Yo también te amo ♡";
+
+
+            setTimeout(() => {
+
+                loveButton.textContent =
+                    "Presiona aquí ♡";
+
+            }, 3000);
+
+        });
+
+
+    </script>
+
+</body>
+</html>
+```
